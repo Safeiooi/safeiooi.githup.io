@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เย็นนี้กินข้าวกับไรดี? (What to eat tonight?)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Custom Keyframes for animations */
+        @keyframes runCat {
+            0% { transform: translateX(-100vw); }
+            100% { transform: translateX(100vw); }
+        }
+        @keyframes runCatReverse {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100vw); }
+        }
+        @keyframes runDog {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100vw); }
+        }
+        @keyframes runDogReverse {
+            0% { transform: translateX(-100vw); }
+            100% { transform: translateX(100vw); }
+        }
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fade-in {
+            animation: fade-in 0.5s ease-out forwards;
+        }
+        .animate-pulse-once {
+            animation: pulse-once 1s ease-in-out;
+        }
+        @keyframes pulse-once {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-bounce {
+            animation: bounce 1s infinite;
+        }
+
+        /* Styling for the custom checkbox/radio appearance */
+        input[type="checkbox"].hidden + span > svg {
+            display: none; /* Hide SVG by default */
+        }
+        input[type="checkbox"].hidden:checked + span > svg {
+            display: block; /* Show SVG when checked */
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-pink-300 via-purple-300 to-blue-400 flex items-center justify-center p-4 relative">
+
+    <!-- Background animals - Cat -->
+    <div class="absolute w-12 h-12 opacity-20" style="top: 10%; left: -10%; animation: runCat 15s linear infinite;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cat">
+            <path d="M12 5c.6 0 1.2.2 1.7.5L16 3l2 2-3.5 3.5c-.3.3-.5.9-.5 1.4V12c0 2.2 1.8 4 4 4h2v2H2v-2h2c2.2 0 4-1.8 4-4v-2c0-.6-.2-1.1-.5-1.4L6 5l2-2 2.3 2.5c.5-.3 1.1-.5 1.7-.5z" />
+            <path d="M9 19c-1.7 0-3-1.3-3-3" />
+            <path d="M15 19c1.7 0 3-1.3 3-3" />
+            <path d="M12 19v-2" />
+        </svg>
+    </div>
+    <div class="absolute w-12 h-12 opacity-20" style="bottom: 20%; right: -10%; animation: runCatReverse 12s linear infinite;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cat">
+            <path d="M12 5c.6 0 1.2.2 1.7.5L16 3l2 2-3.5 3.5c-.3.3-.5.9-.5 1.4V12c0 2.2 1.8 4 4 4h2v2H2v-2h2c2.2 0 4-1.8 4-4v-2c0-.6-.2-1.1-.5-1.4L6 5l2-2 2.3 2.5c.5-.3 1.1-.5 1.7-.5z" />
+            <path d="M9 19c-1.7 0-3-1.3-3-3" />
+            <path d="M15 19c1.7 0 3-1.3 3-3" />
+            <path d="M12 19v-2" />
+        </svg>
+    </div>
+
+    <!-- Background animals - Dog -->
+    <div class="absolute w-12 h-12 opacity-20" style="top: 30%; right: -10%; animation: runDog 18s linear infinite;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dog">
+            <path d="M10 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Z" />
+            <path d="M19 12v1c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1V12a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3Z" />
+            <path d="M12 15v4" />
+            <path d="M12 19H9c-1.7 0-3-1.3-3-3" />
+            <path d="M12 19H15c1.7 0 3-1.3 3-3" />
+            <path d="M16 9a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3Z" />
+            <path d="M8 9a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H8Z" />
+        </svg>
+    </div>
+    <div class="absolute w-12 h-12 opacity-20" style="bottom: 5%; left: -10%; animation: runDogReverse 20s linear infinite;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dog">
+            <path d="M10 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Z" />
+            <path d="M19 12v1c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1V12a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3Z" />
+            <path d="M12 15v4" />
+            <path d="M12 19H9c-1.7 0-3-1.3-3-3" />
+            <path d="M12 19H15c1.7 0 3-1.3 3-3" />
+            <path d="M16 9a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3Z" />
+            <path d="M8 9a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H8Z" />
+        </svg>
+    </div>
+
+    <!-- Main content container -->
+    <div id="main-app-container" class="bg-white bg-opacity-90 p-8 rounded-3xl shadow-2xl w-full max-w-md mx-auto backdrop-blur-sm relative z-10 max-h-[90vh] overflow-y-auto">
+        <h1 class="text-4xl font-extrabold text-center text-gray-800 mb-8 drop-shadow-md">
+            เย็นนี้กินข้าวกับไรดี? (What to eat tonight?)
+        </h1>
+
+        <!-- Loading Food Data Indicator -->
+        <div id="loading-food-data-indicator" class="text-center text-gray-600 text-lg mb-4 hidden">
+            <p>กำลังโหลดรายการอาหาร... (Loading food list...)</p>
+            <div class="flex justify-center items-center mt-2">
+                <svg class="animate-spin h-8 w-8 text-purple-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Shirt Color Selection -->
+        <div class="mb-6">
+            <label for="shirtColor" class="block text-gray-700 text-xl font-bold mb-3">
+                วันนี้ใส่เสื้อสีไร? (What color shirt are you wearing today?)
+            </label>
+            <select id="shirtColor" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-purple-400 focus:border-transparent transition duration-300 ease-in-out text-lg appearance-none bg-white bg-no-repeat bg-right-center pr-10" style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%236B7280' d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z'/%3E%3C/svg%3E&quot;); background-size: 1.5em 1.5em;">
+                <option value="">เลือกสี (Select Color)</option>
+                <option value="red">แดง (Red)</option>
+                <option value="blue">น้ำเงิน (Blue)</option>
+                <option value="green">เขียว (Green)</option>
+                <option value="yellow">เหลือง (Yellow)</option>
+                <option value="white">ขาว (White)</option>
+                <option value="black">ดำ (Black)</option>
+                <option value="orange">ส้ม (Orange)</option>
+                <option value="brown">น้ำตาล (Brown)</option>
+                <option value="grey">เทา (Grey)</option>
+            </select>
+        </div>
+
+        <!-- Hunger Level -->
+        <div class="mb-6">
+            <label class="block text-gray-700 text-xl font-bold mb-3">
+                ระดับความหิว (Hunger Level)
+            </label>
+            <div class="grid grid-cols-3 gap-3">
+                <label class="group flex flex-col items-center p-4 bg-purple-100 rounded-xl cursor-pointer hover:bg-purple-200 transition duration-200 ease-in-out shadow-sm has-[:checked]:bg-purple-500 has-[:checked]:text-white has-[:checked]:shadow-md">
+                    <input type="radio" name="hunger" value="low" class="hidden" />
+                    <span class="text-2xl mb-1 group-has-[:checked]:text-white">🍜</span>
+                    <span class="text-lg font-medium group-has-[:checked]:text-white">หิวน้อย (Low)</span>
+                </label>
+                <label class="group flex flex-col items-center p-4 bg-purple-100 rounded-xl cursor-pointer hover:bg-purple-200 transition duration-200 ease-in-out shadow-sm has-[:checked]:bg-purple-500 has-[:checked]:text-white has-[:checked]:shadow-md">
+                    <input type="radio" name="hunger" value="medium" class="hidden" />
+                    <span class="text-2xl mb-1 group-has-[:checked]:text-white">🍝</span>
+                    <span class="text-lg font-medium group-has-[:checked]:text-white">หิวปานกลาง (Medium)</span>
+                </label>
+                <label class="group flex flex-col items-center p-4 bg-purple-100 rounded-xl cursor-pointer hover:bg-purple-200 transition duration-200 ease-in-out shadow-sm has-[:checked]:bg-purple-500 has-[:checked]:text-white has-[:checked]:shadow-md">
+                    <input type="radio" name="hunger" value="high" class="hidden" />
+                    <span class="text-2xl mb-1 group-has-[:checked]:text-white">🍕</span>
+                    <span class="text-lg font-medium group-has-[:checked]:text-white">หิวมาก (High)</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Money Level -->
+        <div class="mb-6">
+            <label class="block text-gray-700 text-xl font-bold mb-3">
+                ระดับเงินในบัญชี (Money in Account)
+            </label>
+            <div class="grid grid-cols-3 gap-3">
+                <label class="group flex flex-col items-center p-4 bg-blue-100 rounded-xl cursor-pointer hover:bg-blue-200 transition duration-200 ease-in-out shadow-sm has-[:checked]:bg-blue-500 has-[:checked]:text-white has-[:checked]:shadow-md">
+                    <input type="radio" name="money" value="low" class="hidden" />
+                    <span class="text-2xl mb-1 group-has-[:checked]:text-white">💸</span>
+                    <span class="text-lg font-medium group-has-[:checked]:text-white">น้อย (Low)</span>
+                </label>
+                <label class="group flex flex-col items-center p-4 bg-blue-100 rounded-xl cursor-pointer hover:bg-blue-200 transition duration-200 ease-in-out shadow-sm has-[:checked]:bg-blue-500 has-[:checked]:text-white has-[:checked]:shadow-md">
+                    <input type="radio" name="money" value="medium" class="hidden" />
+                    <span class="text-2xl mb-1 group-has-[:checked]:text-white">💰</span>
+                    <span class="text-lg font-medium group-has-[:checked]:text-white">ปานกลาง (Medium)</span>
+                </label>
+                <label class="group flex flex-col items-center p-4 bg-blue-100 rounded-xl cursor-pointer hover:bg-blue-200 transition duration-200 ease-in-out shadow-sm has-[:checked]:bg-blue-500 has-[:checked]:text-white has-[:checked]:shadow-md">
+                    <input type="radio" name="money" value="high" class="hidden" />
+                    <span class="text-2xl mb-1 group-has-[:checked]:text-white">💎</span>
+                    <span class="text-lg font-medium group-has-[:checked]:text-white">มาก (High)</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Dietary Restrictions -->
+        <div class="mb-8">
+            <label class="block text-gray-700 text-xl font-bold mb-3">
+                ข้อจำกัดด้านอาหาร (Dietary Restrictions)
+            </label>
+            <div class="flex flex-col space-y-3">
+                <label class="group flex items-center p-3 bg-green-100 rounded-xl cursor-pointer hover:bg-green-200 transition duration-200 ease-in-out shadow-sm has-[:checked]:bg-green-500 has-[:checked]:text-white has-[:checked]:shadow-md">
+                    <input type="checkbox" id="isHalal" class="hidden" />
+                    <span class="w-6 h-6 border-2 border-green-400 rounded-md flex items-center justify-center mr-3 flex-shrink-0 group-has-[:checked]:border-white group-has-[:checked]:bg-green-500">
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
+                    </span>
+                    <span class="text-lg font-medium group-has-[:checked]:text-white">ฮาลาล (Halal)</span>
+                </label>
+                <label class="group flex items-center p-3 bg-green-100 rounded-xl cursor-pointer hover:bg-green-200 transition duration-200 ease-in-out shadow-sm has-[:checked]:bg-green-500 has-[:checked]:text-white has-[:checked]:shadow-md">
+                    <input type="checkbox" id="isSugarFree" class="hidden" />
+                    <span class="w-6 h-6 border-2 border-green-400 rounded-md flex items-center justify-center mr-3 flex-shrink-0 group-has-[:checked]:border-white group-has-[:checked]:bg-green-500">
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
+                    </span>
+                    <span class="text-lg font-medium group-has-[:checked]:text-white">งดน้ำตาล (No Sugar)</span>
+                </label>
+                <label class="group flex items-center p-3 bg-green-100 rounded-xl cursor-pointer hover:bg-green-200 transition duration-200 ease-in-out shadow-sm has-[:checked]:bg-green-500 has-[:checked]:text-white has-[:checked]:shadow-md">
+                    <input type="checkbox" id="isCarbFree" class="hidden" />
+                    <span class="w-6 h-6 border-2 border-green-400 rounded-md flex items-center justify-center mr-3 flex-shrink-0 group-has-[:checked]:border-white group-has-[:checked]:bg-green-500">
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
+                    </span>
+                    <span class="text-lg font-medium group-has-[:checked]:text-white">งดแป้ง (No Carbs)</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Randomize Button -->
+        <button id="randomize-button" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-extrabold py-4 px-6 rounded-full shadow-lg transform transition duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-4 focus:ring-pink-300 text-xl animate-pulse-once">
+            สุ่มอาหาร (Random Food)
+        </button>
+
+        <!-- Suggested Food Display -->
+        <div id="suggested-food-display" class="mt-10 p-7 bg-gradient-to-br from-yellow-50 to-orange-100 rounded-2xl shadow-xl text-center border-2 border-yellow-200 hidden animate-fade-in">
+            <h2 class="text-3xl font-bold text-orange-700 mb-3">
+                คุณควรกิน: (You should eat:)
+            </h2>
+            <p id="suggested-food-name" class="text-4xl font-extrabold text-orange-900 mb-4 drop-shadow-sm"></p>
+            <p id="suggested-food-calories" class="text-2xl text-gray-700 font-semibold"></p>
+            <div id="food-quotes-container" class="mt-6 pt-4 border-t-2 border-yellow-300">
+                <h3 class="text-xl font-bold text-orange-600 mb-2">คำคมเกี่ยวกับอาหาร:</h3>
+                <ul id="food-quotes-list" class="list-disc list-inside text-gray-700 text-lg space-y-1">
+                    <!-- Quotes will be inserted here by JavaScript -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Popup -->
+    <div id="loading-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 animate-fade-in hidden">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl text-center flex flex-col items-center">
+            <!-- Cat SVG Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cat text-purple-600 mb-4 animate-bounce">
+                <path d="M12 5c.6 0 1.2.2 1.7.5L16 3l2 2-3.5 3.5c-.3.3-.5.9-.5 1.4V12c0 2.2 1.8 4 4 4h2v2H2v-2h2c2.2 0 4-1.8 4-4v-2c0-.6-.2-1.1-.5-1.4L6 5l2-2 2.3 2.5c.5-.3 1.1-.5 1.7-.5z" />
+                <path d="M9 19c-1.7 0-3-1.3-3-3" />
+                <path d="M15 19c1.7 0 3-1.3 3-3" />
+                <path d="M12 19v-2" />
+            </svg>
+            <p class="text-2xl font-bold text-gray-800">กำลังคำนวณข้อมูล...</p>
+            <p class="text-lg text-gray-600">(Calculating data...)</p>
+        </div>
+    </div>
+
+    <script>
+        // Global State Variables
+        let shirtColor = '';
+        let hungerLevel = 'medium';
+        let moneyLevel = 'medium';
+        let isHalal = false;
+        let isSugarFree = false;
+        let isCarbFree = false;
+        let suggestedFood = null;
+        let foodQuotes = []; // New state for food quotes
+        let showLoadingPopup = false;
+        let foodOptions = []; // This will be initially populated and then updated
+        let isLoadingFoodData = true;
+
+        // DOM Element References
+        const shirtColorSelect = document.getElementById('shirtColor');
+        const hungerRadios = document.querySelectorAll('input[name="hunger"]');
+        const moneyRadios = document.querySelectorAll('input[name="money"]');
+        const isHalalCheckbox = document.getElementById('isHalal');
+        const isSugarFreeCheckbox = document.getElementById('isSugarFree');
+        const isCarbFreeCheckbox = document.getElementById('isCarbFree');
+        const randomizeButton = document.getElementById('randomize-button');
+        const suggestedFoodDisplay = document.getElementById('suggested-food-display');
+        const suggestedFoodName = document.getElementById('suggested-food-name');
+        const suggestedFoodCalories = document.getElementById('suggested-food-calories');
+        const foodQuotesList = document.getElementById('food-quotes-list'); // New element reference
+        const loadingPopup = document.getElementById('loading-popup');
+        const loadingFoodDataIndicator = document.getElementById('loading-food-data-indicator');
+
+        // Initial small, hardcoded food list for quick start
+        const initialFoodOptions = [
+            { name: 'ข้าวผัดกะเพราไก่ (Stir-fried Basil Chicken with Rice)', calories: 550, halal: true, sugarFree: false, carbFree: false, suitability: { color: ['red', 'orange', 'black'], hunger: ['medium', 'high'], money: ['low', 'medium'] } },
+            { name: 'ผัดไทยกุ้งสด (Pad Thai with Fresh Shrimp)', calories: 600, halal: true, sugarFree: false, carbFree: false, suitability: { color: ['yellow', 'green', 'white'], hunger: ['medium', 'high'], money: ['medium', 'high'] } },
+            { name: 'ส้มตำไทย (Thai Papaya Salad)', calories: 150, halal: true, sugarFree: false, carbFree: true, suitability: { color: ['green', 'blue', 'white'], hunger: ['low', 'medium'], money: ['low', 'medium'] } },
+            { name: 'แกงเขียวหวานไก่ (Green Curry with Chicken)', calories: 450, halal: true, sugarFree: false, carbFree: false, suitability: { color: ['green', 'yellow', 'red'], hunger: ['medium', 'high'], money: ['medium', 'high'] } },
+            { name: 'สลัดอกไก่ (Chicken Breast Salad)', calories: 250, halal: true, sugarFree: true, carbFree: true, suitability: { color: ['white', 'green', 'blue'], hunger: ['low'], money: ['low', 'medium', 'high'] } },
+        ];
+
+        // Function to render/update the UI based on current state
+        function renderUI() {
+            // Update Shirt Color Select
+            shirtColorSelect.value = shirtColor;
+
+            // Update Hunger Radios (no specific style update needed here as Tailwind's has-[:checked] handles it)
+            hungerRadios.forEach(radio => {
+                radio.checked = (radio.value === hungerLevel);
+            });
+
+            // Update Money Radios (no specific style update needed here as Tailwind's has-[:checked] handles it)
+            moneyRadios.forEach(radio => {
+                radio.checked = (radio.value === moneyLevel);
+            });
+
+            // Update Dietary Checkboxes (only SVG visibility needed, Tailwind handles background/text color)
+            isHalalCheckbox.checked = isHalal;
+            isSugarFreeCheckbox.checked = isSugarFree;
+            isCarbFreeCheckbox.checked = isCarbFree;
+            [isHalalCheckbox, isSugarFreeCheckbox, isCarbFreeCheckbox].forEach(checkbox => {
+                const label = checkbox.closest('label');
+                if (label) {
+                    const svg = label.querySelector('svg');
+                    if (svg) {
+                        // The SVG for the checkmark is inside the span, which is styled by Tailwind's has-[:checked]
+                        // We only need to control its display property here if it's not handled by Tailwind directly.
+                        // For this setup, the SVG is always present but hidden by default CSS.
+                        // Tailwind's has-[:checked] will make the parent span visible, and the SVG inside will be visible too.
+                        // So, explicit JS control of SVG display is not strictly needed if Tailwind handles the parent span's visibility.
+                        // However, keeping it for robustness if Tailwind's has-[:checked] on the span doesn't directly affect SVG display.
+                        svg.style.display = checkbox.checked ? 'block' : 'none';
+                    }
+                }
+            });
+
+            // Update Suggested Food Display
+            if (suggestedFood) {
+                suggestedFoodDisplay.classList.remove('hidden');
+                suggestedFoodName.textContent = suggestedFood.name;
+                suggestedFoodCalories.textContent = `แคลอรี่: ${suggestedFood.calories} Kcal`;
+
+                // Update Food Quotes
+                foodQuotesList.innerHTML = ''; // Clear previous quotes
+                foodQuotes.forEach(quote => {
+                    const li = document.createElement('li');
+                    li.textContent = quote;
+                    foodQuotesList.appendChild(li);
+                });
+            } else {
+                suggestedFoodDisplay.classList.add('hidden');
+                foodQuotesList.innerHTML = ''; // Ensure quotes are cleared when no food is suggested
+            }
+
+            // Update Loading Popup visibility
+            if (showLoadingPopup) {
+                loadingPopup.classList.remove('hidden');
+            } else {
+                loadingPopup.classList.add('hidden');
+            }
+
+            // Update Loading Food Data Indicator and button state
+            if (isLoadingFoodData) {
+                loadingFoodDataIndicator.classList.remove('hidden');
+                randomizeButton.disabled = true;
+                randomizeButton.textContent = 'กำลังโหลด...';
+            } else {
+                loadingFoodDataIndicator.classList.add('hidden');
+                randomizeButton.disabled = false;
+                randomizeButton.textContent = 'สุ่มอาหาร (Random Food)';
+            }
+        }
+
+        // Function to fetch food options from a simulated API (using Gemini API for data generation)
+        async function fetchFoodOptions() {
+            isLoadingFoodData = true;
+            foodOptions = initialFoodOptions; // Set initial food options immediately
+            renderUI(); // Update UI to show initial food options and loading state
+
+            try {
+                const prompt = `Generate a JSON array of 50 diverse Thai and international food items. Each item should have:
+                    - "name": String (Thai and English name)
+                    - "calories": Number
+                    - "halal": Boolean
+                    - "sugarFree": Boolean (true if naturally low/no added sugar, false otherwise)
+                    - "carbFree": Boolean (true if naturally low/no carbs, false otherwise)
+                    - "suitability": Object with:
+                        - "color": Array of Strings (e.g., ["red", "green"])
+                        - "hunger": Array of Strings (e.g., ["low", "medium", "high"])
+                        - "money": Array of Strings (e.g., ["low", "medium", "high"])
+                    Ensure a good mix of true/false for dietary restrictions and diverse suitability.`;
+
+                const payload = {
+                    contents: [{ role: "user", parts: [{ text: prompt }] }],
+                    generationConfig: {
+                        responseMimeType: "application/json",
+                        responseSchema: {
+                            type: "ARRAY",
+                            items: {
+                                type: "OBJECT",
+                                properties: {
+                                    "name": { "type": "STRING" },
+                                    "calories": { "type": "NUMBER" },
+                                    "halal": { "type": "BOOLEAN" },
+                                    "sugarFree": { "type": "BOOLEAN" },
+                                    "carbFree": { "type": "BOOLEAN" },
+                                    "suitability": {
+                                        "type": "OBJECT",
+                                        "properties": {
+                                            "color": { "type": "ARRAY", "items": { "type": "STRING" } },
+                                            "hunger": { "type": "ARRAY", "items": { "type": "STRING" } },
+                                            "money": { "type": "ARRAY", "items": { "type": "STRING" } }
+                                        },
+                                        "propertyOrdering": ["color", "hunger", "money"]
+                                    }
+                                },
+                                "propertyOrdering": ["name", "calories", "halal", "sugarFree", "carbFree", "suitability"]
+                            }
+                        }
+                    }
+                };
+
+                const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const json = result.candidates[0].content.parts[0].text;
+                    const parsedData = JSON.parse(json);
+                    // Combine initial and fetched data, ensuring no duplicates if necessary
+                    foodOptions = [...initialFoodOptions, ...parsedData.filter(item => !initialFoodOptions.some(initItem => initItem.name === item.name))];
+                } else {
+                    console.error("Failed to fetch food options: Unexpected response structure", result);
+                    // If API fails, ensure foodOptions still has the initial data
+                    foodOptions = initialFoodOptions;
+                }
+            } catch (error) {
+                console.error("Error fetching food options:", error);
+                // If API fails, ensure foodOptions still has the initial data
+                foodOptions = initialFoodOptions;
+            } finally {
+                isLoadingFoodData = false;
+                renderUI(); // Update UI after loading (or failing to load)
+            }
+        }
+
+        // Function to fetch food quotes
+        async function fetchFoodQuotes() {
+            try {
+                const prompt = `Generate a JSON array of 3 short, inspiring, or humorous quotes about food or eating. Each quote should be a string.`;
+
+                const payload = {
+                    contents: [{ role: "user", parts: [{ text: prompt }] }],
+                    generationConfig: {
+                        responseMimeType: "application/json",
+                        responseSchema: {
+                            type: "ARRAY",
+                            items: { "type": "STRING" }
+                        }
+                    }
+                };
+
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const json = result.candidates[0].content.parts[0].text;
+                    foodQuotes = JSON.parse(json);
+                } else {
+                    console.error("Failed to fetch food quotes: Unexpected response structure", result);
+                    foodQuotes = ["“The only thing I like better than talking about food is eating.”", "“Food is symbolic of love when words are inadequate.”", "“Laughter is brightest where food is best.”"]; // Fallback quotes
+                }
+            } catch (error) {
+                console.error("Error fetching food quotes:", error);
+                foodQuotes = ["“The only thing I like better than talking about food is eating.”", "“Food is symbolic of love when words are inadequate.”", "“Laughter is brightest where food is best.”"]; // Fallback quotes
+            }
+        }
+
+        // Function to handle the food suggestion logic
+        async function suggestRandomFood() {
+            suggestedFood = null; // Clear previous suggestion
+            foodQuotes = []; // Clear previous quotes
+            showLoadingPopup = true; // Show loading popup
+            renderUI(); // Update UI to show popup
+
+            // Simulate a delay for calculation and fetch quotes concurrently
+            await Promise.all([
+                new Promise(resolve => setTimeout(resolve, 1500)), // 1.5 second delay
+                fetchFoodQuotes() // Fetch quotes
+            ]);
+
+            let filteredFoods = foodOptions;
+
+            // Filter by dietary restrictions
+            if (isHalal) {
+                filteredFoods = filteredFoods.filter((food) => food.halal);
+            }
+            if (isSugarFree) {
+                filteredFoods = filteredFoods.filter((food) => food.sugarFree);
+            }
+            if (isCarbFree) {
+                filteredFoods = filteredFoods.filter((food) => food.carbFree);
+            }
+
+            // Filter by shirt color, hunger, and money suitability
+            filteredFoods = filteredFoods.filter((food) => {
+                const colorMatch = shirtColor === '' || food.suitability.color.includes(shirtColor);
+                const hungerMatch = food.suitability.hunger.includes(hungerLevel);
+                const moneyMatch = food.suitability.money.includes(moneyLevel);
+                return colorMatch && hungerMatch && moneyMatch;
+            });
+
+            if (filteredFoods.length > 0) {
+                const randomIndex = Math.floor(Math.random() * filteredFoods.length);
+                suggestedFood = filteredFoods[randomIndex];
+            } else {
+                suggestedFood = { name: 'ไม่พบอาหารที่ตรงตามเงื่อนไข (No food found matching criteria)', calories: 0 };
+            }
+            showLoadingPopup = false; // Hide loading popup after calculation and quotes fetch
+            renderUI(); // Update UI to show result and hide popup
+        }
+
+        // Event Listeners
+        shirtColorSelect.addEventListener('change', (e) => {
+            shirtColor = e.target.value;
+            renderUI();
+        });
+
+        hungerRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                hungerLevel = e.target.value;
+                renderUI();
+            });
+        });
+
+        moneyRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                moneyLevel = e.target.value;
+                renderUI();
+            });
+        });
+
+        isHalalCheckbox.addEventListener('change', (e) => {
+            isHalal = e.target.checked;
+            renderUI();
+        });
+
+        isSugarFreeCheckbox.addEventListener('change', (e) => {
+            isSugarFree = e.target.checked;
+            renderUI();
+        });
+
+        isCarbFreeCheckbox.addEventListener('change', (e) => {
+            isCarbFree = e.target.checked;
+            renderUI();
+        });
+
+        randomizeButton.addEventListener('click', suggestRandomFood);
+
+        // Initial render and data fetch on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchFoodOptions(); // This will now set initialFoodOptions immediately
+        });
+    </script>
+</body>
+</html>
